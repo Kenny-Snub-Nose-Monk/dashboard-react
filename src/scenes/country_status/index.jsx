@@ -1,6 +1,5 @@
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
-import { mockTransactions } from "../../data/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import CoronavirusSharpIcon from '@mui/icons-material/CoronavirusSharp';
 import SentimentVeryDissatisfiedSharpIcon from '@mui/icons-material/SentimentVeryDissatisfiedSharp';
@@ -8,31 +7,19 @@ import SickSharpIcon from '@mui/icons-material/SickSharp';
 import Header from "../../components/Header";
 import GeographyChart from "../../components/GeographyChart";
 import CircularProgress from '@mui/material/CircularProgress';
-import { countryFlags } from "../../data/countryFlags";
 import NumberCard from "../../components/NumberCard";
 import { useGetSummaryQuery } from '../../services/covid19'
 import { formatDate } from "../../utils/dateFormat";
 import { getCountryFlag } from "../../utils/getCountryFlag.js"
 
-function getTop20CountriesAndFlag(countries){
-  const top20Countries =  [...countries].sort((a, b) => {
-    return b.TotalDeaths - a.TotalDeaths}).slice(0, 20)
-
-  return top20Countries.map(country =>  { return {...country, Flag: getCountryFlag(country.CountryCode)}})
-}
 
 
-const Dashboard = () => {
+const GlobalStatus = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const {data: summary, isFetching: isSummaryFetching, error} = useGetSummaryQuery();
   const refreshDAte = isSummaryFetching ? "" : formatDate(new Date(summary.Date))
-
-  // console.log(summary?.Countries)
-  const top20Countries = isSummaryFetching ? [] : getTop20CountriesAndFlag(summary.Countries)
-
-  console.log(top20Countries)
 
 
   return (
@@ -221,39 +208,10 @@ const Dashboard = () => {
               </Typography>
             </Box>
 
-          {isSummaryFetching ? <CircularProgress sx={{color: colors.greenAccent[600]}}/> 
-            : top20Countries.map((country, i) => (
-            <Box
-              key={country.ID}
-              display="grid"
-              gridTemplateColumns="repeat(3, 1fr)"
-              justifyItems="center"
-              borderBottom={`4px solid ${colors.primary[500]}`}
-              p="15px"
-            >
-              <Box>
-                <Typography
-                  color={colors.greenAccent[500]}
-                  variant="h5"
-                  fontWeight="600"
-                >
-                  {country.Slug.slice(0,1).toUpperCase() + country.Slug.slice(1) + " " + country.Flag}
-                </Typography>
-              </Box>
-              <Box color={colors.grey[100]}>{country.TotalDeaths.toLocaleString()}</Box>
-              <Box
-                backgroundColor={colors.greenAccent[500]}
-                p="5px 10px"
-                borderRadius="4px"
-              >
-                {country.TotalConfirmed.toLocaleString()}
-              </Box>
-            </Box>
-          ))}
         </Box>
       </Box>
     </Box>
   );
 };
 
-export default Dashboard;
+export default GlobalStatus;

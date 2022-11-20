@@ -28,7 +28,7 @@ const GeographyChart = ({ isDashboard = false}) => {
 
   return (
     isSummaryFetching ? <CircularProgress sx={{color: colors.greenAccent[600]}}/> : (<ResponsiveChoropleth
-      data={countries}
+      data={countries || []}
       theme={{
         axis: {
           domain: {
