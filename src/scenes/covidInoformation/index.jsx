@@ -19,7 +19,7 @@ function sortCountriesbyTotalDeathAndAddFlag(countries){
     TotalConfirmed: country.TotalConfirmed,  TotalDeaths: country.TotalDeaths,Flag: getCountryFlag(country.CountryCode)}})
 }
 
-const CovidInofrmation = () => {
+const CovidInoformation = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -124,4 +124,4 @@ const CovidInofrmation = () => {
   );
 };
 
-export default CovidInofrmation;
+export default CovidInoformation;

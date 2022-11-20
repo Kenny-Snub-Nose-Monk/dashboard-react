@@ -3,7 +3,7 @@ import { CssBaseline, ThemeProvider} from '@mui/material';
 import Topbar from './scenes/global/Topbar';
 import Sidebar from './scenes/global/Sidebar';
 import Team from "./scenes/team";
-import CovidInofrmation from "./scenes/covidInofrmation";
+import CovidInoformation from "./scenes/covidInoformation";
 import Bar from "./scenes/bar";
 import Form from "./scenes/form";
 import Line from "./scenes/line";
@@ -31,7 +31,7 @@ function App() {
               <Route path="/" element={<GlobalStatus/>}/>
               <Route path="/country-status" element={<CountryStatus/>}/>
               <Route path="/team" element={<Team/>}/>
-              <Route path="/covid-inofrmation" element={<CovidInofrmation/>}/>
+              <Route path="/covid-inofrmation" element={<CovidInoformation/>}/>
               <Route path="/form" element={<Form/>}/>
               <Route path="/bar" element={<Bar/>}/>
               <Route path="/pie" element={<Pie/>}/>
