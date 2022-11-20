@@ -1,9 +1,9 @@
 import { ResponsiveLine } from "@nivo/line";
 import { useTheme } from "@mui/material";
 import { tokens } from "../theme";
-import { mockLineData as data } from "../data/mockData";
+import { mockLineData as mockData } from "../data/mockData";
 
-const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
+const LineChart = ({ isCustomLineColors = false, isDashboard = false, data= mockData }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -44,7 +44,7 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
         },
       }}
       colors={isDashboard ? { datum: "color" } : { scheme: "nivo" }} // added
-      margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+      margin={{ top: 50, right: 50, bottom: 50, left: 80 }}
       xScale={{ type: "point" }}
       yScale={{
         type: "linear",
@@ -66,6 +66,7 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
         legendOffset: 36,
         legendPosition: "middle",
       }}
+
       axisLeft={{
         orient: "left",
         tickValues: 5, // added
@@ -84,32 +85,32 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
       pointBorderColor={{ from: "serieColor" }}
       pointLabelYOffset={-12}
       useMesh={true}
-      legends={[
-        {
-          anchor: "bottom-right",
-          direction: "column",
-          justify: false,
-          translateX: 100,
-          translateY: 0,
-          itemsSpacing: 0,
-          itemDirection: "left-to-right",
-          itemWidth: 80,
-          itemHeight: 20,
-          itemOpacity: 0.75,
-          symbolSize: 12,
-          symbolShape: "circle",
-          symbolBorderColor: "rgba(0, 0, 0, .5)",
-          effects: [
-            {
-              on: "hover",
-              style: {
-                itemBackground: "rgba(0, 0, 0, .03)",
-                itemOpacity: 1,
-              },
-            },
-          ],
-        },
-      ]}
+      // legends={[
+      //   {
+      //     anchor: "bottom-right",
+      //     direction: "column",
+      //     justify: false,
+      //     translateX: 100,
+      //     translateY: 0,
+      //     itemsSpacing: 0,
+      //     itemDirection: "left-to-right",
+      //     itemWidth: 80,
+      //     itemHeight: 20,
+      //     itemOpacity: 0.75,
+      //     symbolSize: 12,
+      //     symbolShape: "circle",
+      //     symbolBorderColor: "rgba(0, 0, 0, .5)",
+      //     effects: [
+      //       {
+      //         on: "hover",
+      //         style: {
+      //           itemBackground: "rgba(0, 0, 0, .03)",
+      //           itemOpacity: 1,
+      //         },
+      //       },
+      //     ],
+      //   },
+      // ]}
     />
   );
 };

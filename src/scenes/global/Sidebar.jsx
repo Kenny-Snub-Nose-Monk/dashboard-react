@@ -142,8 +142,8 @@ const Sidebar = () => {
             />
 
             <Item
-              title="Contacts Information"
-              to="/contacts"
+              title="Covid Information"
+              to="/covid-inofrmation"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -206,14 +206,6 @@ const Sidebar = () => {
               title="Profile Form"
               to="/form"
               icon={<PersonOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Invoices Balances"
-              to="/invoices"
-              icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

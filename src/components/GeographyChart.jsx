@@ -4,14 +4,14 @@ import { ResponsiveChoropleth } from "@nivo/geo";
 import { geoFeatures } from "../data/mockGeoFeatures";
 import { tokens } from "../theme";
 // import { mockGeographyData as data } from "../data/mockData";
-import { useGetPremiumSummaryQuery } from "../services/covid19";
+import { useGetSummaryQuery } from "../services/covid19";
 import CircularProgress from '@mui/material/CircularProgress';
 import { getCountryISO3 } from "../utils/getCountryISO3";
 
 const GeographyChart = ({ isDashboard = false}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const {data: summary, isFetching: isSummaryFetching, error} = useGetPremiumSummaryQuery();
+  const {data: summary, isFetching: isSummaryFetching, error} = useGetSummaryQuery();
 
 
   // Aviod to do huge comparision in each render

@@ -1,6 +1,5 @@
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
-import { mockTransactions } from "../../data/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import CoronavirusSharpIcon from '@mui/icons-material/CoronavirusSharp';
 import SentimentVeryDissatisfiedSharpIcon from '@mui/icons-material/SentimentVeryDissatisfiedSharp';
@@ -8,7 +7,6 @@ import SickSharpIcon from '@mui/icons-material/SickSharp';
 import Header from "../../components/Header";
 import GeographyChart from "../../components/GeographyChart";
 import CircularProgress from '@mui/material/CircularProgress';
-import { countryFlags } from "../../data/countryFlags";
 import NumberCard from "../../components/NumberCard";
 import { useGetSummaryQuery } from '../../services/covid19'
 import { formatDate } from "../../utils/dateFormat";
@@ -28,12 +26,12 @@ const GlobalStatus = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const {data: summary, isFetching: isSummaryFetching, error} = useGetSummaryQuery();
+  const {data: summary, isFetching: isSummaryFetching, error: summryFetchingError} = useGetSummaryQuery();
   const refreshDAte = isSummaryFetching ? "" : formatDate(new Date(summary.Date))
-
   const top20Countries = isSummaryFetching ? [] : getTop20CountriesAndFlag(summary.Countries)
 
-
+  
+  if(summryFetchingError) return <Box>{`Summry Fetching Error ${summryFetchingError}`}</Box>
 
   return (
     <Box m="15px">
